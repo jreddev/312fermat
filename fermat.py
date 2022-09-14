@@ -1,13 +1,10 @@
 import random
 
-
 def prime_test(N, k):
-    # This is main function, that is connected to the Test button. You don't need to touch it.
     return fermat(N,k), miller_rabin(N,k)
 
 
 def mod_exp(x, y, N):
-    # You will need to implement this function and change the return value.   
     if y == 0:
         return 1
     z = mod_exp(x, int(y/2), N)
@@ -20,22 +17,14 @@ def mod_exp(x, y, N):
 
 
 def fprobability(k):
-    # You will need to implement this function and change the return value.   
-    return 0.0
+    return 1 - (1 / (2**k))
 
 
 def mprobability(k):
-    # You will need to implement this function and change the return value.   
-    return 0.0
+    return 1 - (1 / (4**k))
 
 
 def fermat(N,k):
-    # You will need to implement this function and change the return value, which should be
-    # either 'prime' or 'composite'.
-    #
-    # To generate random values for a, you will most likley want to use
-    # random.randint(low,hi) which gives a random integer between low and
-    #  hi, inclusive.
     while k > 0:
         mod = mod_exp(random.randint(2, (N - 1)), N-1, N)
         if mod != 1:
@@ -45,10 +34,18 @@ def fermat(N,k):
 
 
 def miller_rabin(N,k):
-    # You will need to implement this function and change the return value, which should be
-    # either 'prime' or 'composite'.
-    #
-    # To generate random values for a, you will most likley want to use
-    # random.randint(low,hi) which gives a random integer between low and
-    #  hi, inclusive.
+    while k > 0:
+        root = N - 1
+        a = random.randint(2, root)
+        mod = mod_exp(a, root, N)
+        if mod == 1:
+            while mod == 1:
+                root = (root / 2)
+                if float.is_integer(root):
+                    mod = mod_exp(a, root, N)
+        if mod == (N - 1):
+            return 'prime'
+        else:
+            return 'composite'
+
     return 'composite'

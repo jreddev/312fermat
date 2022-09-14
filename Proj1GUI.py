@@ -40,8 +40,8 @@ class Proj1GUI( QWidget ):
         vbox = QVBoxLayout()
         self.setLayout( vbox )
 
-        self.input_n = QLineEdit('11')  # 312
-        self.input_k = QLineEdit('3')  # 10
+        self.input_n = QLineEdit('23')  # 312
+        self.input_k = QLineEdit('10')  # 10
         self.test    = QPushButton('Test Primality')
         self.outputF  = QLabel('<i>N is the number to test, K is how many random trials</i>')
         self.outputF.setMinimumSize(500,0)
