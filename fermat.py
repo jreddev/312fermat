@@ -10,11 +10,13 @@ def mod_exp(x, y, N):
     # You will need to implement this function and change the return value.   
     if y == 0:
         return 1
-    z=mod_exp(x,int(y/2),N)
-    if y%2==0:
-        return (z*z) % N
+    z = mod_exp(x, int(y/2), N)
+    if y % 2 == 0:
+        r = (z * z) % N
+        return r
     else:
-        return (x*z*z) % N
+        r = (x * z * z) % N
+        return r
 
 
 def fprobability(k):
@@ -35,10 +37,10 @@ def fermat(N,k):
     # random.randint(low,hi) which gives a random integer between low and
     #  hi, inclusive.
     while k > 0:
-        mod = mod_exp(random.randint(2,(N-1)), k, N)
+        mod = mod_exp(random.randint(2, (N - 1)), N-1, N)
         if mod != 1:
             return 'composite'
-        k-=1
+        k -= 1
     return 'prime'
 
 
